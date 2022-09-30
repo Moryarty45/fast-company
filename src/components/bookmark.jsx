@@ -1,15 +1,20 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const BookMark = (props) => {
-    const {status, user} = props;
-    //console.log(user.bookmark);
+const BookMark = ({ status, ...rest }) => {
     return (
         <>
-        {status
-            ? <i className="bi bi-bookmark-check-fill" onClick={() => props.bookmarkUser(user.bookmark)}></i>
-            : <i className="bi bi-bookmark" onClick={() => props.bookmarkUserStatus(status)}></i>}
+            <button {...rest}>
+                <i
+                    className={"bi bi-bookmark" + (status ? "-check-fill" : "")}
+                ></i>
+            </button>
         </>
-    )
+    );
+};
+
+BookMark.propTypes = {
+    status: PropTypes.bool.isRequired
 };
 
 export default BookMark;
